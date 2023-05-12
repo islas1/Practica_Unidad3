@@ -9,13 +9,11 @@ conexion = sqlite3.connect("crud.db")
 def validacion(valor):
     pichula = conexion.execute("select nombre from personas where nombre = ?", (valor, ))
     valid = False
-    valid2 = True
     # El método fechone de la clase Cursor retorna una tupla con la fila de la tabla que coincide con el código ingresado o retorna 'None':
     fila= pichula.fetchone()
     if fila == None :
         messagebox.showerror("Dato erroneo","El servicio ingresado no es válido")
     else:
-         print("aqui todo bien")
          valid= True
          return valid
 
@@ -83,10 +81,10 @@ def mostrar_datos_ingresados():
         edad = usuario[2]   
         email = usuario[3]
 
-        Label(tabla_usuarios,bg="paleturquoise", text=id).grid(row=i, column=0)
-        Label(tabla_usuarios,bg="paleturquoise", text=nombre).grid(row=i, column=1)
-        Label(tabla_usuarios,bg="paleturquoise", text=edad).grid(row=i, column=2)
-        Label(tabla_usuarios,bg="paleturquoise", text=email).grid(row=i, column=3)
+        Label(tabla_usuarios, bg="paleturquoise", text=id).grid(row=i, column=0)
+        Label(tabla_usuarios, bg="paleturquoise", text=nombre).grid(row=i, column=1)
+        Label(tabla_usuarios, bg="paleturquoise", text=edad).grid(row=i, column=2)
+        Label(tabla_usuarios, bg="paleturquoise", text=email).grid(row=i, column=3)
     
 def ingresar_usuario():
     # datos del nuevo jugador
@@ -217,14 +215,15 @@ def login777():
         name4 = str(name3.get())
         contra4 = str(contra3.get())
         variable = str(validacion(name4))
-        if variable != True :
+        variable22 = str(variable)
+        if variable == False :
             messagebox.showerror("Dato erroneo","Alguno de los datos no es correcto")
-        elif variable == True :
+        elif variable22 == "True" :
             ventana = Tk()
             ventana.configure(bg="paleturquoise")
             ventana.configure(padx=80)
             ventana.configure(pady=50)
-            ventana.title("Practica1_CRUD") 
+            ventana.title("Crud") 
 
             # Crear los campos de entrada para los datos del alumno
             Label(ventana,bg="paleturquoise", text="Id:").grid(row=0, column=0, padx=5, pady=5)
@@ -244,9 +243,9 @@ def login777():
             entrada1_email.grid(row=1, column=3, padx=5, pady=5)
 
             # Crear los botones para agregar, actualizar y eliminar alumnos
-            Button(ventana,bg="beige", text="Agregar alumno", command=ingresar_usuario).grid(row=7, column=3, padx=12, pady=10)
-            Button(ventana, text="Actualizar alumno", command=actualizar_usuarioprincipal).grid(row=7, column=2, padx=8, pady=8)
-            Button(ventana, text="Eliminar alumno", command=eliminar_usuarioprincipal).grid(row=7, column=1, padx=8, pady=6)
+            Button(ventana, bg="Light cyan", text="Agregar jugador", command=ingresar_usuario).grid(row=7, column=3, padx=12, pady=10)
+            Button(ventana, bg="Light cyan", text="Actualizar jugador", command=actualizar_usuarioprincipal).grid(row=7, column=2, padx=8, pady=8)
+            Button(ventana, bg="Light cyan", text="Eliminar jugador", command=eliminar_usuarioprincipal).grid(row=7, column=1, padx=8, pady=6)
 
             # Crear la tabla para mostrar los alumnos
             tabla_usuarios1 = Frame(ventana,bg="paleturquoise",)
@@ -281,7 +280,6 @@ def login777():
     ventana2.configure(padx=165)
     ventana2.configure(pady=20)
     # Entrada para la contraseña
-    print("aqui debe mostrar nameeee")
     marco = LabelFrame(ventana2, text="Datos del usuario", font=("Comic Sans", 10, "bold"), bg="paleturquoise")
     marco.config(bd=2,pady=5)
     marco.pack()
@@ -299,7 +297,7 @@ def login777():
     name_entry = tk.Entry(marco)
     name_entry.grid(row=2, column=1, sticky='s', padx=(0, 10), pady=(10, 0))
 
-    submit_button = tk.Button(marco, text="Guardar e iniciar sesión", bg="Light cyan", command=comprobacion)
+    submit_button = tk.Button(marco, text="Iniciar sesión", bg="Light cyan", command=comprobacion)
     submit_button.grid(row=7, column=0, columnspan=2, pady=10, padx=10)
 
     global name3
@@ -314,7 +312,7 @@ ventanaprincipal.configure(pady=100)
 ventanaprincipal.title("Game world")
 tK =tk.Label(ventanaprincipal, text=" Bienvenido a GameWorld ", bg="paleturquoise",
           fg="black", width="20", height="1", font=("Bahnschrift", 15)).grid()
-Iniciar_Sesion1 =  tk.Button(ventanaprincipal, text="Iniciar Sesión",bg="beige",command=login777)  
+Iniciar_Sesion1 =  tk.Button(ventanaprincipal, text="Iniciar Sesión",bg="Light cyan",command=login777)  
 Iniciar_Sesion1.grid(padx=20, pady=20)
 
 ventanaprincipal.mainloop()

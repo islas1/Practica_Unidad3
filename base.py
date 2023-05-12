@@ -11,11 +11,11 @@ conexion.close()
 
 import random
 for i in range(10): 
-    num = random.randint(9999,99999)
+    num = random.randint(9999, 99999)
 conexion = sqlite3.connect("crud.db")
 nombrejugador= str(input("Ingresa un nombre: --> "))
 contrajugador= str(input("Ingresa una contraseña: --> "))
-conexion.execute("Insert into personas(id,nombre,contraseña) values(?,?,?)", (num,nombrejugador,contrajugador))
+conexion.execute("Insert into personas(id,nombre,contraseña) values(?,?,?)", (num, nombrejugador, contrajugador))
 conexion.commit()
 juga = conexion.execute("select * from personas where nombre = ?", (nombrejugador, ))
 fila = juga.fetchone()
